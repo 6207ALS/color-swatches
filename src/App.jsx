@@ -1,7 +1,15 @@
 import { useState, useReducer } from 'react';
 import colorService from "./services/colorService";
 
+<<<<<<< Updated upstream
 import Swatch from "./components/Swatch";
+=======
+import Swatches from "./components/Swatches";
+import HSLForm from "./components/HSLForm";
+
+
+import useColorState from "./hooks/colorState";
+>>>>>>> Stashed changes
 
 const colorReducer = (state, action) => {
 	switch(action.type) {
@@ -56,6 +64,7 @@ function App() {
 
   return (
     <>
+<<<<<<< Updated upstream
       <form onSubmit={handleGetColors}>
 				<label htmlFor="saturation_input">Saturation: </label>
 				<input 
@@ -81,6 +90,15 @@ function App() {
 						colorState.colors.map(color => <Swatch color={color} />) 
 				}
 			</div>
+=======
+      <HSLForm 
+				handleGetColors={handleGetColors}
+				handleSaturationChange={handleSaturationChange}
+				handleLightChange={handleLightChange}
+			/>
+
+			<Swatches colorState={colorState} />
+>>>>>>> Stashed changes
     </>
   )
 }
