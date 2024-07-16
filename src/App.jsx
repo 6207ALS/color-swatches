@@ -2,8 +2,9 @@ import { useState, useReducer } from 'react';
 import colorService from "./services/colorService";
 
 import Swatch from "./components/Swatch";
+import Swatches from "./components/Swatches";
+import HSLForm from "./components/HSLForm";
 import useColorState from "./hooks/colorState";
-
 
 function App() {
 	const {
@@ -15,40 +16,13 @@ function App() {
 
   return (
     <>
-      <form onSubmit={handleGetColors}>
-				<label htmlFor="saturation_input">Saturation: </label>
-				<input 
-					id="saturation_input" 
-					type="text"
-					onChange={handleSaturationChange}
-				/>
+      <HSLForm 
+				handleGetColors={handleGetColors}
+				handleSaturationChange={handleSaturationChange}
+				handleLightChange={handleLightChange}
+			/>
 
-				<label htmlFor="light_input">Light:</label>
-				<input 
-					id="light_input" 
-					type="text"
-					onChange={handleLightChange}
-				/>
-
-				<button type="submit">Search</button>
-			</form>
-
-			{
-				colorState.isLoading ? 
-				<h1>Loading</h1> : null
-			}
-
-			{
-				colorState.error ?
-				<h1>{colorState.error.message}</h1> : null
-			}
-
-			<div id="swatches_container">
-				{
-					colorState.colors ? 
-					colorState.colors.map(color => <Swatch color={color} />) : null
-				}
-			</div>
+			<Swatches colorState={colorState} />
     </>
   )
 }

@@ -35,8 +35,7 @@ function useColorState() {
   });
 
   // Make API call to retrieve colors according to saturation & light states
-	const handleGetColors = async (e) => {
-		e.preventDefault();
+	const handleGetColors = async () => {
 		const { saturation, light } = colorState;
 		colorDispatch({ type: "isLoading" });
 
