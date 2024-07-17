@@ -1,22 +1,21 @@
 import Swatch from "./Swatch";
+import LoadingIcon from "./LoadingIcon"
 
 function Swatches({ colorState }) {
 	return (
 		<>
-			{
-				colorState.isLoading ? 
-				<h1>Loading</h1> : null
+			{ 
+				colorState.colors ? 
+				<p>Your search input matched {colorState.colors.length} colors. </p> : null
 			}
-
-			{
-				colorState.error ?
-				<h1>{colorState.error.message}</h1> : null
-			}
-
 			<div id="swatches_container">
 				{
+					colorState.isLoading ? 
+					<LoadingIcon /> : null
+				}
+				{
 					colorState.colors ? 
-					colorState.colors.map(color => <Swatch color={color} />) : null
+						colorState.colors.map(color => <Swatch color={color} />) : null
 				}
 			</div>
 		</>
