@@ -6,11 +6,11 @@ function HSLForm({
 	validateInputs,
 	}) {
 
-	const onFormSubmit = (e) => {
+	const onFormSubmit = async (e) => {
 		e.preventDefault();
 
 		const isValidated = validateInputs()
-		if (isValidated) handleGetColors();
+		if (isValidated) await handleGetColors();
 	}
 
 	const onSaturationChange = (e) => handleSaturationChange(e);
