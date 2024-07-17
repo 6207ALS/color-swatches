@@ -25,7 +25,7 @@ const colorReducer = (state, action) => {
   }
 }
 
-// Custom reducer hook for colors
+// Custom reducer hook for retrieving colors
 function useColorState() {
 
   // Manages state for colors
