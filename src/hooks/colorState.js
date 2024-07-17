@@ -25,13 +25,14 @@ const colorReducer = (state, action) => {
   }
 }
 
-// Custom state management hook for colors
+// Custom reducer hook for colors
 function useColorState() {
 
   // Manages state for colors
   const [ colorState, colorDispatch ] = useReducer(colorReducer, { 
     isLoading: false, 
     colors: null,
+    validationError: null,
     error: null,
     saturation: "",
     light: ""
@@ -60,12 +61,13 @@ function useColorState() {
 		colorDispatch({ type: "setLight", light: e.target.value })
 	}
 
-  // Return boolean indicating if input value is valid
+  // Return boolean indicating if input value is valid integer
   const isValidInput = (value, start=0, end=100) => {
     return value.trim() &&
       !isNaN(value) &&
       Number(value) >= start &&
-      Number(value) <= end
+      Number(value) <= end &&
+      String(parseInt(value)) === value; 
   }
 
   // Updates state upon validating inputs
@@ -75,12 +77,12 @@ function useColorState() {
     if (!isValidInput(saturation)) {
       colorDispatch({ 
         type: "setValidationError", 
-        validationError: "Saturation must be a value between 0 - 100"})
+        validationError: "Saturation must be an integer between 0 - 100"})
       return false;
     } else if (!isValidInput(light)) {
       colorDispatch({ 
         type: "setValidationError", 
-        validationError: "Light must be a value between 0 - 100"})
+        validationError: "Light must be an integer between 0 - 100"})
       return false;
     }
 
