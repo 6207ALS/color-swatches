@@ -34,6 +34,7 @@
 }
 
 .swatch_container {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	text-align: center;
@@ -42,6 +43,30 @@
 	margin: 10px 0;
 	width: 140px;
 }
+
+.swatch-img_container {
+	position: relative;
+}
+
+.swatch-info_container {
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	width: 100px;
+	height: 100px;
+	font-size: 12px;
+	background-color: rgba(255, 255, 255, 0.705);
+	opacity: 0;
+	border: 1px solid black;
+
+	transition: opacity 0.5s ease;
+}
+
+.swatch-info_container:hover {
+	opacity: 1;
+} 
 
 img {
 	max-width: 100px;

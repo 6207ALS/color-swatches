@@ -11,7 +11,7 @@ function Swatches({ colorState }) {
 			<div id="swatches_container">
 				{
 					colorState.isLoading ? 
-					<LoadingIcon /> : null
+						<LoadingIcon /> : null
 				}
 				{
 					colorState.colors ? 
