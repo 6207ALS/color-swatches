@@ -15,7 +15,10 @@ function Swatches({ colorState }) {
 				}
 				{
 					colorState.colors ? 
-						colorState.colors.map(color => <Swatch color={color} />) : null
+						colorState.colors.map(color => <Swatch 
+							key={color.hex.value} 
+							color={color} 
+						/>) : null
 				}
 			</div>
 		</>
