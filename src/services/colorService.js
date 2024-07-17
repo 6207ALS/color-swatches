@@ -1,5 +1,8 @@
 const BASE_URL = "https://www.thecolorapi.com";
 
+// Simple cache of API responses for each saturation-light combination
+const colorRecord = {}
+
 // Return an array of numbers representing a series of hue values
 function getHueValues(start=0, end=360, increment=5) {
 	const values = [];
@@ -94,11 +97,19 @@ function filterByUniqueNames(colors) {
 // Return all colors with given saturation and light values 
 async function getUniqueColors(saturation, light) {
 	try {
+
+		// Check if the colors for the given combination are already cached
+		if (colorRecord[`${saturation}-${light}`]) {
+			return colorRecord[`${saturation}-${light}`]
+		}
+
+		// Else, make API request for the colors and cache the results 
 		const hueValues = getHueValues();
 		const colors = await getColors(hueValues, saturation, light)
 		const refinedColors = await getRefinedColors(colors);
 		const uniqueColors = filterByUniqueNames(refinedColors);
 	
+		colorRecord[`${saturation}-${light}`] = uniqueColors;
 		return uniqueColors;
 	} catch (e) {
 		if (e instanceof Error) {
@@ -106,7 +117,6 @@ async function getUniqueColors(saturation, light) {
 		}
 	}
 }
-
 
 export default {
 	getUniqueColors

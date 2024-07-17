@@ -1,12 +1,16 @@
 function HSLForm({ 
+	colorState,
 	handleGetColors,
 	handleSaturationChange,
 	handleLightChange,
+	validateInputs,
 	}) {
 
 	const onFormSubmit = (e) => {
 		e.preventDefault();
-		handleGetColors();
+
+		const isValidated = validateInputs()
+		if (isValidated) handleGetColors();
 	}
 
 	const onSaturationChange = (e) => handleSaturationChange(e);
@@ -15,6 +19,12 @@ function HSLForm({
 	return (
 		<div id="hsl-form_container">
 			<h1>Swatches</h1>
+			
+			{
+				colorState.validationError ?
+				<p className="message">{colorState.validationError}</p> : null
+			}
+
 			<form onSubmit={onFormSubmit} id="hsl_form">
 				<div className="hsl_input">
 					<label htmlFor="saturation_input">Saturation: </label>

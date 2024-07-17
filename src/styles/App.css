@@ -51,3 +51,16 @@ p {
 	margin: 10px 0;
 	font-weight: bold;
 }
+
+.message {
+	color: rgb(120, 174, 255);
+}
+
+#loading-icon_container {
+	display: flex;
+	align-items: center;
+}
+
+#loading-icon_container > * {
+	margin: 0 10px;
+}
