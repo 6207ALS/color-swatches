@@ -39,27 +39,27 @@ function useColorState() {
   });
 
   // Make API call to retrieve colors according to saturation & light states
-	const handleGetColors = async () => {
-		const { saturation, light } = colorState;
+  const handleGetColors = async () => {
+    const { saturation, light } = colorState;
     
-		try {
+    try {
       colorDispatch({ type: "isLoading" });
-			const colors = await colorService.getUniqueColors(saturation, light);
-			colorDispatch({ type: "isLoaded", colors })
-		} catch (error) {
-			colorDispatch({ type: "setError", error })
-		}
-	}
+      const colors = await colorService.getUniqueColors(saturation, light);
+      colorDispatch({ type: "isLoaded", colors })
+    } catch (error) {
+      colorDispatch({ type: "setError", error })
+    }
+  }
 
   // Update saturation state according to input change
-	const handleSaturationChange = (e) => {
-		colorDispatch({ type: "setSaturation", saturation: e.target.value })
-	}
+  const handleSaturationChange = (e) => {
+    colorDispatch({ type: "setSaturation", saturation: e.target.value })
+  }
 
   // Update light state according to input change
-	const handleLightChange = (e) => {
-		colorDispatch({ type: "setLight", light: e.target.value })
-	}
+  const handleLightChange = (e) => {
+    colorDispatch({ type: "setLight", light: e.target.value })
+  }
 
   // Return boolean indicating if input value is valid integer
   const isValidInput = (value, start=0, end=100) => {

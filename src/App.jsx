@@ -6,25 +6,25 @@ import HSLForm from "./components/HSLForm";
 import useColorState from "./hooks/colorState";
 
 function App() {
-	const {
-		colorState,
+  const {
+    colorState,
     handleGetColors,
     handleSaturationChange,
     handleLightChange,
-		validateInputs
-	} = useColorState();
+    validateInputs
+  } = useColorState();
 
   return (
     <>
       <HSLForm 
-				colorState={colorState}
-				handleGetColors={handleGetColors}
-				handleSaturationChange={handleSaturationChange}
-				handleLightChange={handleLightChange}
-				validateInputs={validateInputs}
-			/>
+        colorState={colorState}
+        handleGetColors={handleGetColors}
+        handleSaturationChange={handleSaturationChange}
+        handleLightChange={handleLightChange}
+        validateInputs={validateInputs}
+      />
 
-			<Swatches colorState={colorState} />
+      <Swatches colorState={colorState} />
     </>
   )
 }
